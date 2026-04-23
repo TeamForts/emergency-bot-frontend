@@ -1,0 +1,29 @@
+.login-card {
+  max-width: 320px;
+  margin: 40px auto;
+  padding: 20px;
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+select, input, button {
+  padding: 10px;
+  border: 1px solid var(--outline);
+  border-radius: 8px;
+  background: var(--input-bg);
+  color: var(--text-primary);
+}
+button {
+  background: var(--primary);
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+.hint {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+}

@@ -1,0 +1,28 @@
+.map-wrapper {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: var(--surface);
+  padding: 16px;
+}
+.map {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.exit-group {
+  cursor: pointer;
+  transition: filter 0.2s;
+}
+.exit-group:hover {
+  filter: drop-shadow(0 0 5px rgba(0,0,0,0.4));
+}
+.active {
+  filter: drop-shadow(0 0 10px red);
+}
+text {
+  user-select: none;
+}

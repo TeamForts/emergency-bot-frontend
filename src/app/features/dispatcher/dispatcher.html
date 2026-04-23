@@ -1,0 +1,42 @@
+<div class="dispatcher-panel">
+  <h2>Панель диспетчера</h2>
+
+  <div class="section">
+    <h3>Ожидающие запросы</h3>
+    @for (req of pendingRequests(); track req.id) {
+      <div class="request-card">
+        <div class="meta">
+          <span>Работник #{{ req.userId }}</span>
+          <span class="time">{{ req.timestamp | date:'short' }}</span>
+        </div>
+        <p class="message">{{ req.message }}</p>
+        <div class="reply-row">
+          <input
+            [ngModel]="replies()[req.id] || ''"
+            (ngModelChange)="setReply(req.id, $event)"
+            placeholder="Введите ответ..."
+          />
+          <button (click)="sendReply(req.id)">Ответить</button>
+        </div>
+      </div>
+    } @empty {
+      <p>Нет активных запросов.</p>
+    }
+  </div>
+
+  <div class="section">
+    <h3>Последние события</h3>
+    <div class="log-list">
+      @for (log of logs(); track log.id) {
+        <div class="log-entry">
+              <span class="badge" [class.worker]="log.role==='worker'" [class.dispatcher]="log.role==='dispatcher'">
+                {{ log.role === 'worker' ? 'Раб.' : 'Дисп.' }}
+              </span>
+          <span class="user-id">#{{ log.userId }}</span>
+          <span class="msg">{{ log.message }}</span>
+          <span class="time">{{ log.timestamp | date:'shortTime' }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

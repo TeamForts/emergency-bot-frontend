@@ -1,0 +1,16 @@
+<div class="login-card">
+  <h2>Вход в систему</h2>
+  <select [ngModel]="selectedUser()" (ngModelChange)="selectedUser.set($event)">
+    <option value="">Выберите пользователя</option>
+    <option value="worker1">Работник (worker1)</option>
+    <option value="dispatcher1">Диспетчер (dispatcher1)</option>
+  </select>
+  <input
+    type="password"
+    placeholder="Пароль (password)"
+    [ngModel]="password()"
+    (ngModelChange)="password.set($event)"
+  />
+  <button (click)="doLogin()" [disabled]="!selectedUser() || !password()">Войти</button>
+  <p class="hint">Демо: <br/>worker1 / password<br/>dispatcher1 / password</p>
+</div>

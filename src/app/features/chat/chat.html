@@ -1,0 +1,59 @@
+<div class="chat-card">
+  <!-- Быстрые действия -->
+  <div class="quick-actions">
+    @for (action of quickActions; track action.label) {
+      <button (click)="sendMessage(action.message)" class="action-chip">
+        <span class="icon">{{ action.icon }}</span>
+        <span>{{ action.label }}</span>
+      </button>
+    }
+  </div>
+
+  <!-- Область сообщений -->
+  <div #messagesContainer class="messages-area">
+    @for (msg of messages(); track msg.id) {
+      <div
+        class="message-wrapper"
+        [class.user]="msg.sender === 'user'"
+        [class.bot]="msg.sender === 'bot'"
+      >
+        <div class="bubble">
+          <div class="text">{{ msg.text }}</div>
+          @if (msg.buttons?.length) {
+            <div class="action-buttons">
+              @for (btn of msg.buttons; track btn) {
+                <button (click)="sendQuickReply(btn)" class="reply-btn">{{ btn }}</button>
+              }
+            </div>
+          }
+          <div class="time">{{ msg.timestamp | date:'HH:mm' }}</div>
+        </div>
+      </div>
+    }
+
+    <!-- Индикатор печати -->
+    @if (isBotTyping()) {
+      <div class="message-wrapper bot">
+        <div class="bubble typing">
+          <div class="dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>
+    }
+  </div>
+
+  <!-- Нижняя панель ввода -->
+  <div class="input-area">
+    <form (ngSubmit)="sendMessage()" class="input-form">
+      <input
+        type="text"
+        [ngModel]="newMessage()"
+        (ngModelChange)="newMessage.set($event)"
+        name="chatInput"
+        placeholder="Введите сообщение…"
+        autocomplete="off"
+      />
+      <button type="submit" class="send-btn" [disabled]="!newMessage().trim()">➤</button>
+    </form>
+    <button class="clear-btn" (click)="clearHistory()" title="Очистить историю">🗑️</button>
+  </div>
+</div>

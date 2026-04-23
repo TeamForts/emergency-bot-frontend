@@ -1,0 +1,101 @@
+.app-shell {
+  min-height: 100vh;
+  background: var(--background);
+  color: var(--on-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 60px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--outline);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    background: var(--surface-variant);
+    border-radius: 20px;
+    padding: 3px;
+    button {
+      background: transparent;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 18px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--on-surface-variant);
+      transition: all 0.2s;
+      cursor: pointer;
+      &.active {
+        background: var(--surface);
+        color: var(--primary);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+      }
+    }
+  }
+
+  .user-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--on-surface);
+  }
+
+  .logout-btn {
+    background: transparent;
+    border: 1px solid var(--outline);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: var(--on-surface-variant);
+    transition: background 0.2s;
+    &:hover {
+      background: var(--surface-variant);
+    }
+  }
+}
+
+main {
+  flex: 1;
+  padding: 16px;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 8px 12px;
+    gap: 8px;
+  }
+  .header-right {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tab-bar button {
+    padding: 5px 12px;
+    font-size: 0.8rem;
+  }
+}
